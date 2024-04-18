@@ -1,0 +1,14 @@
+version: '3'
+services:
+  spark:
+    environment:
+      - TZ=America/Sao_Paulo  # Substitua pelo fuso horário desejado
+    build:
+      context: . #diretorio de contexto para executar as rotinas abaixos
+      dockerfile: Dockerfile #Subir aplicação utilizando o dockerfile
+    container_name: spark
+    #restart: unless-stopped #Container reincia sempre que houver uma falha ou parada, exceto quando paramos manualmente
+    volumes:
+      - .:/opt/spark/work-dir #Cria um volume utilizando o diretório atual para a pasta app no container
+    ports:
+      - "4040:4040" #Aplicação executa na porta 5000 e responde na 5000
